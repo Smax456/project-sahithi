@@ -1,1 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#090711">
+<title>Sahithi 🌸 | AI Companion</title>
 
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(ellipse at top, #29203d, #090711 70%);
+  color: #fff;
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+.app {
+  min-height: 100vh;
+  padding: 28px 20px 35px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.badge {
+  border: 1px solid #b88bdb66;
+  border-radius: 30px;
+  padding: 9px 16px;
+  color: #e4c7ff;
+  font-size: 12px;
+  letter-spacing: 2px;
+}
+
+h1 {
+  margin: 22px 0 5px;
+  font-size: 35px;
+  letter-spacing: 3px;
+}
+
+.subtitle {
+  color: #c5b7d9;
+  font-size: 14px;
+}
+
+.avatar {
+  width: 210px;
+  height: 260px;
+  margin: 24px auto 15px;
+  border-radius: 110px 110px 85px 85px;
+  background: linear-gradient(160deg, #34234d, #151020);
+  border: 1px solid #bd8be766;
+  box-shadow: 0 0 40px #b35cff24;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  animation: float 4s ease-in-out infinite;
+}
+
+.avatar::before,
+.avatar::after {
+  content: "";
+  position: absolute;
+  width: 115px;
+  height: 180px;
+  background: #100d18;
+  border-radius: 50%;
+  top: 15px;
+}
+
+.avatar::before {
+  left: 4px;
+  transform: rotate(-13deg);
+}
+
+.avatar::after {
+  right: 4px;
+  transform: rotate(13deg);
+}
+
+.face {
+  width: 112px;
+  height: 143px;
+  border-radius: 48% 48% 45% 45%;
+  background: linear-gradient(135deg, #f5d0bc, #d99d91);
+  position: relative;
+  z-index: 1;
+  margin-top: 15px;
+}
+
+.bangs {
+  position: absolute;
+  z-index: 2;
+  top: 42px;
+  width: 115px;
+  height: 65px;
+  background: #100d18;
+  border-radius: 55% 55% 35% 35%;
+  clip-path: polygon(0 0,100% 0,94% 75%,75% 55%,65% 100%,48% 58%,30% 92%,23% 56%,5% 78%);
+}
+
+.eye {
+  position: absolute;
+  top: 62px;
+  width: 11px;
+  height: 17px;
+  border-radius: 50%;
+  background: #59364b;
+  animation: blink 5s infinite;
+}
+
+.eye.left { left: 25px; }
+.eye.right { right: 25px; }
+
+.smile {
+  position: absolute;
+  left: 43px;
+  top: 100px;
+  width: 27px;
+  height: 12px;
+  border-bottom: 2px solid #9c536c;
+  border-radius: 50%;
+}
+
+.status {
+  color: #d7b4fa;
+  font-size: 13px;
+  margin: 12px 0;
+}
+
+.message {
+  color: #f3e9ff;
+  line-height: 1.7;
+  max-width: 310px;
+  min-height: 55px;
+}
+
+button {
+  border: none;
+  border-radius: 30px;
+  padding: 14px 23px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.primary {
+  background: linear-gradient(90deg, #dba7ff, #f3b9dc);
+  color: #21102e;
+  margin-top: 16px;
+  box-shadow: 0 5px 25px #dba7ff24;
+}
+
+.secondary {
+  background: #ffffff10;
+  color: #ead8ff;
+  border: 1px solid #ffffff22;
+  margin-top: 12px;
+}
+
+.note {
+  color: #8e819f;
+  font-size: 11px;
+  margin-top: auto;
+  padding-top: 35px;
+}
+
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+
+@keyframes blink {
+  0%, 44%, 48%, 100% { transform: scaleY(1); }
+  46% { transform: scaleY(.12); }
+}
+</style>
+</head>
+
+<body>
+<main class="app">
+  <div class="badge">✦ YOUR VIRTUAL COMPANION ✦</div>
+
+  <h1>SAHITHI 🌸</h1>
+  <div class="subtitle">A little world of our own</div>
+
+  <div class="avatar" role="img" aria-label="Stylized anime companion">
+    <div class="face">
+      <div class="eye left"></div>
+      <div class="eye right"></div>
+      <div class="smile"></div>
+    </div>
+    <div class="bangs"></div>
+  </div>
+
+  <div class="status">● ONLINE · PROTOTYPE</div>
+
+  <div class="message" id="message">
+    Hiii! 🌸<br>
+    Welcome! I'm Sahithi.<br>
+    Em chestunnav? 😊
+  </div>
+
+  <button class="primary" onclick="greet()">
+    💗 Say Hello
+  </button>
+
+  <button class="secondary" onclick="changeMood()">
+    ✨ Change My Mood
+  </button>
+
+  <div class="note">
+    PROJECT SAHITHI · VERSION 1.0<br>
+    A personal creative AI companion project
+  </div>
+</main>
+
+<script>
+const greetings = [
+  "Hiii! 🌸 Em chestunnav? I'm happy you're here!",
+  "Heyyy! 💗 Ela unnావు? Let's make something amazing!",
+  "Hello again! ✨ Ready to build our little AI world?",
+  "Namaskaram! 🌷 Shall we continue our project?"
+];
+
+const moods = [
+  "😊 Happy Sahithi is here!",
+  "🌙 A little sleepy, but still smiling!",
+  "✨ Curious mood activated!",
+  "🌸 Feeling cheerful today!"
+];
+
+function greet() {
+  document.getElementById("message").innerHTML =
+    greetings[Math.floor(Math.random() * greetings.length)];
+}
+
+function changeMood() {
+  document.getElementById("message").textContent =
+    moods[Math.floor(Math.random() * moods.length)];
+}
+</script>
+</body>
+  </html> 
